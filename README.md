@@ -3,6 +3,8 @@ Easy to develop hubot script Dockerfile
 
 This dockerfile is intended to make it easy to develop hubot scripts for slack.
 
+You can use familiar vi from a beginning and can install vim by yum, if necessary.
+
 ## Description
 
 It is the present conditions that the hubot script is hard to do development very much. I made the dockerfile that could develop hubot script on familiar CentOS to solve this problem.
@@ -43,14 +45,21 @@ Invite hubot in rooms using the slash commands.
 
 At this point still hubot is offline. And the hubot to online in the usage section.
 
-## Usage
+## How to build(optionally)
 
 ```bash
 # download Dockerfile
 git clone git@github.com:treetips/dockerfile-centos-hubot-slack.git
 
 # build Dockerfile
-docker build -t treetips/centos-hubot-slack .
+docker build -t treetips/dockerfile-centos-hubot-slack .
+```
+
+## Usage
+
+```bash
+# pull images
+docker pull treetips/dockerfile-centos-hubot-slack:latest
 
 # run container with slac api token
 docker run -dit --name hubot-slack -e HUBOT_SLACK_TOKEN=xoxb-XXXXXXXXXXX-XXXXXXXXXXXXXXXXXXXXXXXX treetips/centos-hubot-slack:latest
@@ -62,7 +71,7 @@ docker exec -it hubot-slack bash
 ./bin/hubot --adapter slack
 ```
 
-Because it starts in a foreground, hubot is stop in Ctrl + c to let you reflect the hubot script which you made and lets it starts again and reflect it.
+Because it starts in a **foreground**, hubot is stop in Ctrl + c to let you reflect the hubot script which you made and lets it starts again and reflect it. The reason why I start foreground is that I make it easy to restart hubot.
 
 Because this Dockerfile add hubot user to /etc/sudoers, You can install a package by yum command optionally.
 
