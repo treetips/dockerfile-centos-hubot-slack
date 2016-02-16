@@ -9,11 +9,11 @@ RUN yum -y update && \
     useradd hubot && \
     echo "hubot" | passwd --stdin hubot && \
     chown hubot:hubot /opt/hubot && \
-    echo "hubot	ALL=(ALL) 	ALL" >> /etc/sudoers
-
-RUN npm install -g yo generator-hubot coffee-script hubot-slack
+    echo "hubot	ALL=(ALL) 	ALL" >> /etc/sudoers && \
+    npm install -g yo generator-hubot coffee-script hubot-slack && \
+    npm cache clear && \
+    echo "#!/bin/sh\nbin/hubot --adapter slack" > start-hubot-slack.sh && chmod +x *.sh
 
 WORKDIR /opt/hubot
 USER hubot
 RUN yo hubot --force --no-insight --owner='tester' --name='bot' --description='hubot test' --adapter='slack' chdir=/opt/hubot
-

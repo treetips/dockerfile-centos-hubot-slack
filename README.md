@@ -1,17 +1,11 @@
 Easy to develop hubot script Dockerfile
 ====
 
-This dockerfile is intended to make it easy to develop hubot scripts for slack.
-
-You can use familiar vi from a beginning and can install vim by yum, if necessary.
-
 ## Description
 
-It is the present conditions that the hubot script is hard to do development very much. I made the dockerfile that could develop hubot script on familiar CentOS to solve this problem.
+As for this image, **sudo**, **yum**, **vi**, **npm** are installed. become easy to develop a hubot-slack script on docker.
 
-Because this dockerfile uses CentOS which is not optimized by a container, I compare it and size is big, but many package are pre installed by just that much from a beginning and become easy to do development very much because it is easy to add it later in yum.
-
-In addition, this dockerfile is a local development use and is not a production use.
+Because this image that was completely specialized in development, the use in the production environment does not consider it.
 
 ## Requirement
 
