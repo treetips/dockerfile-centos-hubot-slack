@@ -11,9 +11,9 @@ RUN yum -y update && \
     chown hubot:hubot /opt/hubot && \
     echo "hubot	ALL=(ALL) 	ALL" >> /etc/sudoers && \
     npm install -g yo generator-hubot coffee-script hubot-slack && \
-    npm cache clear && \
-    echo "#!/bin/sh\nbin/hubot --adapter slack" > start-hubot-slack.sh && chmod +x *.sh
+    npm cache clear
 
 WORKDIR /opt/hubot
 USER hubot
-RUN yo hubot --force --no-insight --owner='tester' --name='bot' --description='hubot test' --adapter='slack' chdir=/opt/hubot
+RUN yo hubot --force --no-insight --owner='tester' --name='bot' --description='hubot test' --adapter='slack' chdir=/opt/hubot && \
+    echo -e "#!/bin/sh\nbin/hubot --adapter slack" > /opt/hubot/start-hubot-slack.sh && chmod +x /opt/hubot/*.sh
